@@ -24,7 +24,7 @@ void startGame()
 		wordDisplay[i] = '-';
 	}
 	cout <<"How many attempts does Player 2 have to guess the word?" <<endl;
-	cin >> attempts; //Getting the amount of attempts
+	cin >> attempts; //Getting the amount of attempts you said
 	cout <<"Clearing chat... \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" //Clearing Chat
 	<<"Chat cleared." <<endl;
 	cout <<wordDisplay <<endl; //Displaying hidden word (----)
