@@ -14,7 +14,6 @@ string wordDisplay;
 int attempts;
 char playerGuess;
 string wrongGuesses;
-string wrongGuessesDisplay;
 
 void startGame()
 {
@@ -38,7 +37,12 @@ int main()
 	while (hangingMan == true) {
 		startGame(); //Calling the startGame function
 		cout <<"The word has " <<word.length() <<" characters." <<endl;
-		cout <<"You have " <<attempts <<" attempt/s to guess the word." <<endl;
+		if (attempts == 1) { //Grammar correcting
+			cout <<"You have " <<attempts <<" attempt to guess the word." <<endl;
+		}
+		else {
+			cout <<"You have " <<attempts <<" attempts to guess the word." <<endl;
+		}
 		cout <<"You can start guessing now." <<endl;
 		while (attempts > 0 && word != wordDisplay) { //while attempts > 0 AND word does not equal to displayed hidden word, continue guessing
 			guessing(); //Calling the guessing function
@@ -64,7 +68,8 @@ int main()
 				understand = true;
 			}
 			else if (toupper(playAgain[0]) == 'Y') { //if answer is yes
-				cout <<"Alright. ";
+				cout <<endl <<"Alright. ";
+				wrongGuesses.clear(); //Clears the wrongGuesses variable from last game
 				understand = true;
 			}
 			else {
@@ -100,7 +105,6 @@ void guessing()
 	}
 	if (letterFound == false && alreadyGuessed == false) { //if guessed letter isn't in word, add it to wrongGuesses
 		wrongGuesses += playerGuess;
-		wrongGuessesDisplay += playerGuess + ", ";
 		attempts--; //use up an attempt if guessed incorrectly
 		cout <<"You guessed wrong!" <<endl;
 	}
@@ -122,6 +126,9 @@ void display()
 	}
 	else if (attempts != 1 && endGame == false) { //otherwise, say attempts
 		cout <<"You have: " <<attempts <<" attempts remaining." <<endl;
+	}
+	if (wrongGuesses.length() != 0) { //if there's nothing in wrongGuesses, don't say it
+		cout <<"Failed attempts: " <<wrongGuesses <<endl;
 	}
 	return;
 }
