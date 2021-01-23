@@ -62,18 +62,20 @@ int main()
 		bool understand = false;
 		while (understand == false) {
 			cin >> playAgain; //Getting your answer
-			if (toupper(playAgain[0]) == 'N') { //if answer is no
+			switch(toupper(playAgain[0])) {
+			case 'N': //if answer is no
 				cout <<"'Twas fun, bye!" <<endl;
 				hangingMan = false;
 				understand = true;
-			}
-			else if (toupper(playAgain[0]) == 'Y') { //if answer is yes
+				break;
+			case 'Y': //if answer is yes
 				cout <<endl <<"Alright. ";
 				wrongGuesses.clear(); //Clears the wrongGuesses variable from last game
 				understand = true;
-			}
-			else {
+				break;
+			default:
 				cout <<"I didn't understand, please say yes or no." <<endl; //if answer is neither yes or no, ask again
+				break;
 			}
 		}
 	}
