@@ -34,6 +34,7 @@ void startGame()
 int main()
 {
 	bool hangingMan = true;
+	string theWordAttempt;
 	while (hangingMan == true) {
 		startGame(); //Calling the startGame function
 		cout <<"The word has " <<word.length() <<" characters." <<endl;
@@ -51,11 +52,9 @@ int main()
 		if (attempts <= 0) {
 			cout <<"You ran out of attempts! You lost. \n The word was \"" <<word <<"\"" <<endl; //Lose message
 		}
-		else if (attempts == 1){
-			cout <<"You guessed the word \"" <<word <<"\" with only " <<attempts << " attempt left! You won!" <<endl; //Win message with singular attempt left
-		}
-		else if (attempts > 1) {
-			cout <<"You guessed the word \"" <<word <<"\" with only " <<attempts << " attempts left! You won!" <<endl; //Win message with multiple attempts left
+		else if (attempts > 0){
+			attempts>1? theWordAttempt = "attempts": theWordAttempt = "attempt"; //Grammar fixing
+			cout <<"You guessed the word \"" <<word <<"\" with only " <<attempts <<" " <<theWordAttempt <<" left! You won!" <<endl; //Win message
 		}
 		cout <<"Would you like to play again?" <<endl;
 		string playAgain;
