@@ -34,7 +34,7 @@ void displayResult(int x);
 vector<int> savedPlayerRolls;
 vector<int> savedCompRolls;
 
-void introScreen(int lowScore, bool notFirstTime, int innerGullibility)
+void introScreen(int lowScore, bool notFirstTime, bool veryGullible)
 {
 	cout << WHT;
 	cout << "                       _..._                           ___\n";
@@ -55,8 +55,8 @@ void introScreen(int lowScore, bool notFirstTime, int innerGullibility)
 	cout << "/: \\___\\  / .  /\\\n";
 	cout << "\\' / . / /____/..\\\n";
 	cout << " \\/___/  \\'  '\\  /              ";
-	innerGullibility < 30 && notFirstTime ? cout << MAG << "Lowest Gullibility: " << GRN << lowScore << WHT << endl : innerGullibility >= 30 ? cout << MAG << "Gullibility: " << RED << "INFINITE (you suck at this)" << NRM << endl : cout << endl;
-	//if innerGullibility < 30 AND notFirstTime == true, do all this ^                                               if not, check if innerGullibility >= 30, if yes, do all this ^                                                  if not, skip
+	!veryGullible && notFirstTime ? cout << MAG << "Lowest Gullibility: " << GRN << lowScore << WHT << endl : veryGullible ? cout << MAG << "Gullibility: " << RED << "INFINITE (you suck at this)" << NRM << endl : cout << endl;
+	//if innerGullibility < 30 AND notFirstTime == true, do all this ^                                               if not, check if innerGullibility >= 30, if yes, do all this AFTER player accuses ^             if not, skip
 	cout << "          \\'__'\\/\n";
 	cout << NRM;
 	return;
@@ -66,7 +66,9 @@ int main()
 {
 	srand(time(NULL)); //gets the time at the time of use to configure rand function
 
-	introScreen(0, false, 0); //Calls the introScreen func
+	system("cls"); //Clears the screen to allow for colour
+
+	introScreen(0, false, false); //Calls the introScreen func
 
 	//EXPLANATION
 	cout << GRN << "Welcome to " << RED << "diceGame!\n" << GRN << "The way this works is you'll be playing against " << CYN << "me! The Computer!"
@@ -95,6 +97,7 @@ int main()
 	bool cheatNextRound = false;
 	int gullibility = 0;
 	int innerGullibility = 0;
+	bool veryGullible = false;
 	int lowScore = 666;
 	bool notFirstTime = false; //not first time Comp cheated
 	string beginQM;
@@ -194,6 +197,7 @@ int main()
 					}
 					else if (innerGullibility > 30) {
 						cout << MAG << "Finally! You're really gullible, aren't ya?" << NRM << endl; //if it took Player over 30 rounds to guess that Comp is cheating, Player is very very bad
+						veryGullible = true;
 						skipGullibilityDisplay = true;
 					}
 					if (skipGullibilityDisplay == false) {
