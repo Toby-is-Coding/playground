@@ -225,21 +225,21 @@ int main()
 				}
 				else if (alreadyAccused == true) { //if Player already accused Comp like 2 seconds ago
 					cout << RED "You already called me out on it, I get it! I'll go!" << NRM;
-					this_thread::sleep_for(chrono::milliseconds(500));
+					this_thread::sleep_for(chrono::seconds(1));
 					stopQM = true; //Stops the game loop
 					continueQM = true;
 					break;
 				}
 				else { //if Comp wasn't cheating
 					cout << RED "You don't trust me? I can't believe it. That is so rude... I quit!\n" << CYN << "Computer" << MAG << " wasn't cheating... You offended it." << NRM << endl;
-					this_thread::sleep_for(chrono::seconds(1));
+					this_thread::sleep_for(chrono::seconds(3));
 					stopQM = true; //Stops the game loop
 					continueQM = true;
 					break;
 				}
 			default: //default response
 				cout << GRN << "I'll take that as a yes!" << NRM << endl;
-				this_thread::sleep_for(chrono::milliseconds(350));
+				this_thread::sleep_for(chrono::milliseconds(500));
 				if (isCheating == true) {
 					gullibility += 10;
 				}
