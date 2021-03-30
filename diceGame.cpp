@@ -76,7 +76,8 @@ int main()
 		<< "\nThen in the following rounds, we roll! " << RED << "Whoever has the highest sum wins!\n"
 		//TIP PART:
 		<< MAG << "Tip: Watch out for the " << CYN << "Computer" << MAG << " He gets frustrated pretty easily.\n"
-		<< "If you think he's cheating, don't be gullible. Call him out by saying \"cheater!\"" << NRM << endl;
+		<< "If you think he's cheating, don't be gullible. Call him out by saying \"cheater!\"\n"
+		<<"Also, the " <<CYN <<"Computer" <<MAG <<"'s pretty smart. If he cheats, it'll be logical." << NRM << endl;
 	//EXPLANATION OVER
 
 	cout << "How many rolls do we get? In between 1 and 6." << endl;
