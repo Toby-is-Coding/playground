@@ -55,8 +55,15 @@ void introScreen(int lowScore, bool notFirstTime, bool veryGullible)
 	cout << "/: \\___\\  / .  /\\\n";
 	cout << "\\' / . / /____/..\\\n";
 	cout << " \\/___/  \\'  '\\  /              ";
-	!veryGullible && notFirstTime ? cout << MAG << "Lowest Gullibility: " << GRN << lowScore << WHT << endl : veryGullible ? cout << MAG << "Gullibility: " << RED << "INFINITE (you suck at this)" << NRM << endl : cout << endl;
-	//if innerGullibility < 30 AND notFirstTime == true, do all this ^                                               if not, check if innerGullibility >= 30, if yes, do all this AFTER player accuses ^             if not, skip
+	if (veryGullible == false && notFirstTime == true) { //if innerGullibility < 30 AND notFirstTime == true
+		cout << MAG << "Lowest Gullibility: " << GRN << lowScore << WHT << endl;
+	}
+	else if (veryGullible == true) { //if not, check if innerGullibility >= 30, if yes, do all this AFTER player accuses
+		cout << MAG << "Gullibility: " << RED << "INFINITE (you suck at this)" << NRM << endl;
+	}
+	else { //if not, skip
+		cout << endl;
+	}
 	cout << "          \\'__'\\/\n";
 	cout << NRM;
 	return;
@@ -189,9 +196,11 @@ int main()
 						if (gullibility > 100) { //if lowScore > gullibility AND gullibility < 100, new lowScore, w/max cap at 100
 							lowScore = 100;
 							gullibility = 100;
+							veryGullible = false;
 						}
 						else {
 							lowScore = gullibility;
+							veryGullible = false;
 						}
 						cout << MAG << "Congratulations! You're less gullible this time." << " New lowest gullibility level: " << GRN << lowScore << NRM << endl;
 						skipGullibilityDisplay = true;
@@ -200,9 +209,10 @@ int main()
 						cout << MAG << "Finally! You're really gullible, aren't ya?" << NRM << endl; //if it took Player over 30 rounds to guess that Comp is cheating, Player is very very bad
 						veryGullible = true;
 						skipGullibilityDisplay = true;
+						lowScore = 100;
 					}
 					if (skipGullibilityDisplay == false) {
-						cout << MAG << "Gullibility level: " << RED << gullibility << NRM << endl;
+						cout << MAG << "Gullibility level: " << RED << gullibility << NRM << endl; //Gullibility Display
 					}
 					cout << GRN << "Aah! Alright, I'm sorry. Let's continue?" << NRM << endl;
 					isCheating = false;
@@ -241,7 +251,7 @@ int main()
 		}
 		if (stopQM == false) {
 			system("cls"); //Clear screen
-			introScreen(lowScore, notFirstTime, innerGullibility); //Calls the introScreen func
+			introScreen(lowScore, notFirstTime, veryGullible); //Calls the introScreen func
 		}
 	}
 	return 0;
