@@ -13,6 +13,7 @@
 #define ERRORCODE 3
 #define PLAYERFOR for
 #define COMPFOR for
+//COLOURS
 #define CYN "\x1B[36m"
 #define YLW "\x1B[33m"
 #define GRN "\x1B[32m"
